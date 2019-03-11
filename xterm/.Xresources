@@ -1,0 +1,127 @@
+XTerm.vt100.bellIsUrgent : false 
+!bell禁止
+
+XTerm*locale: true
+
+XTerm*utf8Title: true
+
+XTerm*fontMenu*fontdefault*Label: Default
+
+XTerm*faceName: Courier 10 Pitch:antialias=True:pixelsize=14
+ 
+xterm*faceNameDoublesize:WenQuanYi Zen Hei Mono:antialias=True:pixelsize=14
+
+!xterm*faceNameDoublesize: WenQuanYi Micro Hei:pixelsize=14
+!XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=True:pixelsize=14
+
+XTerm*inputMethod:fcitx
+
+XTerm*faceSize: 15
+
+XTerm*faceSize1: 15
+
+XTerm*faceSize2: 15
+
+XTerm*faceSize3: 15
+
+XTerm*faceSize4: 15
+
+XTerm*faceSize5: 15
+
+XTerm*faceSize6: 15
+
+XTerm.cjkWidth:true
+
+XTerm*scrollBar: false
+
+XTerm*rightScrollBar: false
+
+XTerm*jumpScroll:  false
+
+XTerm*SaveLines: 1000
+
+xterm*VT100*geometry:112x23
+
+xterm*VT100*scaleHeight:1.00
+
+XTerm*VT100.Translations: #override \n\
+Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+<BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+Ctrl <KeyPress> P: print() \n
+
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+*background:            S_base03
+*foreground:            S_base0
+*fadeColor:             S_base03
+*cursorColor:           S_base1
+*pointerColorBackground:S_base01
+*pointerColorForeground:S_base1
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3
+!xterm*foreground: #a5a8a7
+!xterm*background: #002B36
+!xterm*cursorColor: #a5a8a7
+!xterm*color0: #34403c
+!xterm*color1: #ff855a
+!xterm*color2: #6ab78a
+!xterm*color3: #b6aa1a
+!xterm*color4: #5daeee
+!xterm*color5: #d495b4
+!xterm*color6: #6eb2bc
+!xterm*color7: #96aca7
+!xterm*color8: #2a423d
+!xterm*color9: #df993a
+!xterm*color10: #4abb88
+!xterm*color11: #99b22a
+!xterm*color12: #3caffe
+!xterm*color13: #d091db
+!xterm*color14: #4ab4d3
+!xterm*color15: #a5a8a7

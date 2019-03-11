@@ -1,0 +1,4 @@
+https://wiki.archlinux.org/index.php/Per-application_transparency
+xterm 的透明效果wiki，根据官方的wiki弄成的透明，会造成文字不清晰，文字与xterm一起透明，解决方法为混成器xcompmgr渲染文字，使文字显现，及添加绘制功能。
+另一方法为对terminal进行真透明，文字进行伪透明或不透明，这一方法是一位前辈提出的也实现了，但没有提供透明方法，你们可以借鉴这种方法，这种方法会比第一种效果要好
+sudo pacman -S ttf-roboto noto-fonts-cjk adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu

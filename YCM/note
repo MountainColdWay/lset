@@ -1,0 +1,6 @@
+安装llvm clang 将llvm clang的包内所有文件拷入当前文件夹运行以下命令
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=./ . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+cmake --build . --target ycm_core --config Release
+https://github.com/Valloric/YouCompleteMe#the-gycm_server_python_interpreter-option
+参照上面的链接，在vim当中写入let g:ycm_server_python_interpreter = '/usr/bin/python版本'，笨方法：挨个尝试python版本，反正又不会死人
+编译ycm
