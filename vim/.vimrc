@@ -5,8 +5,8 @@ map <C-y> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
-		exec '!g++ % -o %<'
-		exec '!time ./%<'
+		exec '!g++ %'
+		exec '!time ./a.out'
 	elseif &filetype == 'cpp'
 		exec '!g++ % -o %<'
 		exec '!time ./%<'
