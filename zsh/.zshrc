@@ -101,41 +101,38 @@ source $ZSH/oh-my-zsh.sh
 
 ####################################################
 
-alias scls='printf "\033c" && screenfetch -D kalilinux'
+#alias scls='printf "\033c" && screenfetch -D kalilinux'
+alias scls='printf "\033c" && screenfetch'
 alias cls='printf "\033c"'
 alias install='sudo pacman -S'
-alias remove='sudo pacman -Rcn'
+alias remove='sudo pacman -Rscn'
 alias reclean='sudo pacman -Rsscn'
 alias update='sudo pacman -Syyu'
+alias paclog='vim /var/log/pacman.log'
 alias snow='systemctl poweroff'
 alias reboot='systemctl reboot'
 alias cleanpkg='sudo pacman -Rns $(pacman -Qtdq)'
-alias ipodin='sudo ipod-shuffle-4g -tpd 2 $HOME/ipod/' 
+alias ipodin='sudo ipod-shuffle-4g -pd 2 $HOME/ipod/' 
 alias ipod='ipod-shuffle-4g'
 alias awetry='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'
+alias mount='sudo mount'
+alias umount='sudo umount'
 alias vi='vim'
 alias shadowstart="sudo systemctl start shadowsocks@myserver privoxy.service"
 alias shadowre="sudo systemctl restart shadowsocks@myserver privoxy.service"
 alias shadowstop="sudo systemctl stop shadowsocks@myserver privoxy.service"
 alias shadowstatus="sudo systemctl status shadowsocks@myserver privoxy.service"
-##########################
-amixer set beep 0% mute
-#启动screen#
-#if [[ -z "$STY" ]]; then
-#   screen -xRR session_name
-#fi
-###########################
+alias asmld='ld -m elf_i386 -o a.out -s'
+
+amixer set -q Beep 0% mute
 
 autoload -U compinit
 compinit
 
-#方向键控制自动补全#
 zstyle ':completion:*' menu select
 
-#自动补全别名#
 setopt completealiases
 
-#fish高亮
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export TERM=xterm-256color
@@ -145,10 +142,15 @@ export awe=$HOME/Photo/awe
 export PATH=$PATH:$HOE/.local/bin
 export GOPATH="$HOME/.go"
 export learn="$HOME/Document/learn"
+export code="$HOME/code"
+export lfs="$HOME/lfs"
+export LFS_TGT='x86_64-pc-linux-gnu'
+export MAKEFLAGS='-j4'
 
-#开机启动awesome
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
-
 cls
+
+# zsh-bd
+. $HOME/.zsh/plugins/bd/bd.zsh
