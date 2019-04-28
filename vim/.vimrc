@@ -23,6 +23,7 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""
 :set vb
 set number
+set mouse=a
 set whichwrap=b,s,<,>,[,]
 :set encoding=utf-8
 :filetype indent on
