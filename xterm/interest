@@ -5,3 +5,8 @@ em... You should know something.THE Wiki IS ERROR!
 0-1,that be .85,not the 0.85...
 compton is a good idea,better than xcompmgr.Also,this is my mind.you can do every thing.
 sudo pacman -S ttf-roboto noto-fonts-cjk adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu
+
+
+
+OK,there is a new way to make transparent,that use compton and flashfocus,Also the compton can make transparent by own,but every thing will transparent.Maybe the Chromium you will not to transparent.so,the flashfocus can do it,and they have a blacklist to make no transparent.
+Compton are very good software.and can be config by file.
