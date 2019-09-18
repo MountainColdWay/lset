@@ -102,8 +102,8 @@ source $ZSH/oh-my-zsh.sh
 ####################################################
 
 #alias scls='printf "\033c" && screenfetch -D kalilinux'
-alias scls='printf "\033c" && screenfetch'
-alias cls='printf "\033c"'
+alias scls='clear && screenfetch'
+alias cls='clear'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rscn'
 alias reclean='sudo pacman -Rsscn'
@@ -118,13 +118,9 @@ alias awetry='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'
 alias mount='sudo mount'
 alias umount='sudo umount'
 alias vi='vim'
-alias shadowstart="sudo systemctl start shadowsocks@myserver privoxy.service"
-alias shadowre="sudo systemctl restart shadowsocks@myserver privoxy.service"
-alias shadowstop="sudo systemctl stop shadowsocks@myserver privoxy.service"
-alias shadowstatus="sudo systemctl status shadowsocks@myserver privoxy.service"
+alias systemctl='sudo systemctl'
 alias asmld='ld -m elf_i386 -o a.out -s'
-
-amixer set -q Beep 0% mute
+alias scroll='xinput set-prop "ThinkPad Keyboard Mouse" "libinput Scroll Method Enabled" 0 0 1'
 
 autoload -U compinit
 compinit
@@ -150,7 +146,7 @@ export MAKEFLAGS='-j4'
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
-cls
+clear
 
 # zsh-bd
 . $HOME/.zsh/plugins/bd/bd.zsh
