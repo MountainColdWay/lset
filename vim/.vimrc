@@ -1,11 +1,9 @@
-"Quickly Run Code
-"""""""""""""""""""""""""""""""""""""""""""""""
-map <C-y> :call CompileRunGcc()<CR>
-
-func! CompileRunGcc()
+"""""""""""compile fun""""""""""""
+map <C-y> :call CompileAndRun()<CR>
+func! CompileAndRun()
 	exec "w"
 	if &filetype == 'c'
-		exec '!g++ %'
+		exec '!gcc %'
 		exec '!time ./a.out'
 	elseif &filetype == 'cpp'
 		exec '!g++ % -o %<'
@@ -16,115 +14,108 @@ func! CompileRunGcc()
 		:!time bash %
 	elseif &filetype=='lua'
 		exec '!time lua5.3 %'
-	elseif &filetype=='ruby'
-		exec '!time ruby %'
+	elseif &filetype=='go'
+		exec '!time go run %'
+	elseif &filetype=='javascript'
+		exec '!time node %'
+	elseif &filetype=='d'
+		exec '!dmd %'
+		exec '!time ./%<'
 	endif
 endfunc
-"""""""""""""""""""""""""""""""""""""""""""""""
-:set vb
-set number
-set mouse=a
-set whichwrap=b,s,<,>,[,]
-:set encoding=utf-8
-:filetype indent on
-:syntax on
-set cursorline 
-set spell 
 
-"""""""""""auto remmber the cousr""""""""""
+"""""""""""vim setting""""""""""""
+set encoding=utf-8
+" set bell
+set vb
+" file type check
+filetype indent on
+" add omni complete
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+" word high light
+syntax on
+" cursor line
+set cursorline
+" spell check
+set spell
+" number
+set number
+" mouse
+set mouse=a
+" indent
+set smartindent
+" auto remember the cursor
 augroup resCur
-  autocmd!
-  autocmd BufReadPost * call setpos(".", getpos("'\""))
+	autocmd!
+	autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
-
+"""""""""""vim plug manager"""""""
 execute pathogen#infect()
 filetype plugin indent on
 
-
-"""""""youcompleteme""""""""
-""""""""""""""""""""""""""""""""""""""
-""YcmLocationOpened auto""
-function! s:CustomizeYcmLocationWindow()
-  " Move the window to the top of the screen.
-  wincmd K
-  " Set the window height to 5.
-  5wincmd _
-  " Switch back to working window.
-  wincmd p
-endfunction
-
-autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
-""""""""""""""""""""""""""
-""YcmQuickFixOpened auto""
-function! s:CustomizeYcmQuickFixWindow()
-  " Move the window to the top of the screen.
-  wincmd K
-  " Set the window height to 5.
-  5wincmd _
-endfunction
-
-autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
-""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-let g:ycm_semantic_triggers =  { 			
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'], 			
-			\ 'cs,lua,javascript': ['re!\w{2}'], 	
-			\  }
-map <C-n> :YcmCompleter GoTo<CR>
-
-""""""airline-vim"""""""""""
+"""""""""""airline-vim""""""""""""
 let g:airline_section_b= '%{strftime("%c")}'
 let g:airline_section_y= 'BN: %{bufnr("%")}'
-let g:airline_left_sep = '>>'
-let g:airline_right_sep = '<<'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:airline_detect_modified=1
 let g:airline_theme='base16_google'
 
-""""""NERDTree-vim"""""""""""""
-map <C-f> :NERDTreeToggle<CR>
+"""""""""""NERDTree-vim"""""""""""
+map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-"""""""taglist""""""""""
-let Tlist_Compact_Format = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
-nnoremap <C-l> :TlistToggle<CR>
+"""""""""""vim-rainbow""""""""""""
+let g:rainbow_active = 1
+let g:rainbow_load_separately = [
+			\ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+			\ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+			\ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+			\ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+			\ ]
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res == 0
-    if pumvisible()
-      return "\<C-n>"
-    else
-      call UltiSnips#JumpForwards()
-      if g:ulti_jump_forwards_res == 0
-        return "\<TAB>"
-      endif
-    endif
-  endif
-  return ""
-endfunction
+"""""""""""vim-autoformat"""""""""
+nnoremap <C-f> :Autoformat<CR>
+let g:autoformat_verbosemode=1
+autocmd FileType proto au BufWrite * :Autoformat
 
-function! g:UltiSnips_Reverse()
-  call UltiSnips#JumpBackwards()
-  if g:ulti_jump_backwards_res == 0
-    return "\<C-P>"
-  endif
+"""""""""""ultisnips""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
-  return ""
-endfunction
+"""""""""""gofmt.vim""""""""""""""
+let g:gofmt_exe = 'gofmt'
+let g:gofmt_on_save = '1'
 
 
-if !exists("g:UltiSnipsJumpForwardTrigger")
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"""""""""""tagbar"""""""""""""""""
+nnoremap <C-l> :TagbarToggle<CR>
+let g:tagbar_position = 'left'
+autocmd VimEnter * TagbarToggle
+
+"""""""""""ack.vim""""""""""""""""
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
 endif
-if !exists("g:UltiSnipsJumpBackwardTrigger")
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-endif
 
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
-au InsertEnter * exec "inoremap <silent> " .     g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+"""""""""""deoplete.vim"""""""""""
+set completeopt+=noselect
+set completeopt+=noinsert
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog  = '/bin/python3'
+let g:python3_host_skip_check = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+call deoplete#custom#option({
+			\ 'camel_case': v:true,
+			\ })
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
